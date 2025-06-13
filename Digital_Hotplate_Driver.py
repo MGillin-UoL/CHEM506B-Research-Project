@@ -1,3 +1,5 @@
+# IKA RCT Basic Hot Plate Stirrer
+
 driver = IKADriver(serial_port='/dev/ttyACM0')
  
 driver.setStir(1000)
