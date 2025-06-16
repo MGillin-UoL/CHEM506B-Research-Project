@@ -38,4 +38,4 @@ If you have any questions or would like additional information, please contact:
 This project is not currently licensed.
 
 ## Acknowledgements
-The author would like to thank his supervisors, Dr Joe Forth and Gabriella Pizzuto for supervising his project. He would also like to thank Emmanuel Ombo, who supported Michael throughout his project. He would also like to thank Jakub Glowacki for supporting him with his robotic workflow development.
+The author would like to thank his supervisors, Dr Joe Forth and Gabriella Pizzuto for supervising his project. He would also like to thank Dr Marco Giardello for cosupervising his project. He would also like to thank Emmanuel Ombo, who supported Michael throughout his project. He would also like to thank Jakub Glowacki for supporting him with his robotic workflow development. He would also like to thank all members of the Forth Group, who taught him how to 3D print, introduced him to the university's disposal mechanisms, and saw him day-to-date in the office.
