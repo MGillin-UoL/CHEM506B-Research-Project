@@ -11,9 +11,9 @@ def main():
     gripper.connect(HOST, 63352)
     #gripper.activate()
     gripper.move(255, 255, 255)
-    # First number: How far it opens (0 max) and closes (255 minimum)
+    # First number: How far it opens (0 fully closed) and closes (255 fully open)
     # Second number: How quickly it opens and closes (0 slowest, 255 fastest)
-    # Third number: No idea
+    # Third number: Force (0 minimum, 255 maximum)
 
 if __name__ == '__main__':
     main()
