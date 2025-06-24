@@ -123,6 +123,11 @@ def main():
     operate_gripper(gripper, 0)
     print("Returned cartridge to Position 1", "\n")
     
+    move_robot(robot, ROBOT_POSITIONS["Before_CH_P1"])
+    print("Moved just in front of cartidge holder Position 1", "\n")
+
+    move_robot(robot, ROBOT_POSITIONS["Home_Position"])
+    print("Returning to home position", "\n")
 
     # === Image Capture Setup ===
     cam = cv2.VideoCapture(0)
