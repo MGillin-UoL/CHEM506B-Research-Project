@@ -22,9 +22,11 @@ ROBOT_POSITIONS = {
     "Above_SVH1_P1": [1.7414016723632812, -1.3616285038045426, 1.3544829527484339, -1.581027170220846, 4.728183746337891, 0.20159339904785156],
     "Above_MTQ_P1": [1.6635525226593018, -1.6336456737914027, 1.6214864889727991, -1.5751520595946253, 4.7296552658081055, 0.12319839745759964], # Mettler Toledo Quantos, Position 1
     "MTQ_P1": [1.666123867034912, -1.4169096511653443, 2.1400330702411097, -2.3105293713011683, 4.7272443771362305, 0.1289839893579483],
-    "Facing_CH_P1": [1.660979986190796, -0.8530509036830445, 1.3222835699664515, -0.6348576110652466, 3.2073233127593994, -0.13249665895570928], # Facing Cartridge Holder, Position 1
-    "CH_P1": [1.5990753173828125, -0.9024868172458191, 1.7017572561847132, -2.2899843655028285, 3.1535933017730713, -1.4146059195147913],
-    "just_above_stirrer": [1.4119, -1.2327, 1.5361, 1.2655, 1.5617, 2.9592],
+    "Facing_CH_P1": [1.739319086074829, -0.7890741390040894, 1.2029216925250452, -0.4900575441173096, 3.285005569458008, -0.04295999208559209], # Facing Cartridge Holder, Position 1
+    "Before_CH_P1": [1.6446585655212402, -0.9325866860202332, 1.7292874495135706, -2.3080955944456996, 3.1797618865966797, 1.6713024377822876],
+    "CH_P1": [1.6021586656570435, -0.9525528711131592, 1.6396577993976038, -1.7278710804381312, 3.1662089824676514, 2.1333248615264893],
+    "Before_MTQ_Cartidge": [2.098874568939209, -1.813380857507223, 2.2846065203296106, -0.3756905359080811, 2.06877064704895, 3.169734477996826],
+    "MTQ_Cartridge": [1.9800453186035156, -1.718318601647848, 2.212010685597555, -0.403808669453003, 1.950730323791504, 3.1575405597686768],
     "in_front_of_white_bg": [0.9755, -1.2299, 1.5326, 1.2679, 1.5616, 2.5228],
     "above_home_holder": [1.7151, -0.9303, 0.9488, 1.4103, 1.4994, 3.2781],
     "readjustment": [1.7268, -0.8310, 0.8724, 1.5186, 1.5266, 3.2738],
@@ -66,41 +68,61 @@ def main():
     # Initial position
     operate_gripper(gripper, 0)
     move_robot(robot, ROBOT_POSITIONS["Home_Position"])
-    print("Starting in home position")
-    time.sleep(0.1)
+    print("Starting in home position", "\n")
 
     # Sample acquisition
     operate_gripper(gripper, 0)
     move_robot(robot, ROBOT_POSITIONS["SVH1_P1"])
-    print("Moved to sample vial holder Position 1")
+    print("Moved to sample vial holder Position 1", "\n")
     operate_gripper(gripper, 140)
-    time.sleep(0.1)
 
     # Move to Mettler Toledo Quantos
     move_robot(robot, ROBOT_POSITIONS["Above_SVH1_P1"])
-    print("Moved to above sample vial holder Position 1")
-    time.sleep(0.1)
+    print("Moved to above sample vial holder Position 1", "\n")
+    
     move_robot(robot, ROBOT_POSITIONS["Above_MTQ_P1"])
-    print("Moved to above Mettler Toledo Quantos Position 1")
-    time.sleep(0.1)
+    print("Moved to above Mettler Toledo Quantos Position 1", "\n")
+    
     move_robot(robot, ROBOT_POSITIONS["MTQ_P1"])
     operate_gripper(gripper, 0)
-    print("Released sample into Mettler Toledo Quantos Position 1")
-    time.sleep(0.1)
+    print("Released sample into Mettler Toledo Quantos Position 1", "\n")
+    
     move_robot(robot, ROBOT_POSITIONS["Above_MTQ_P1"])
-    print("Moved to above Mettler Toledo Quantos Position 1")
-    time.sleep(0.1)
-
-    # Load Sample Vial 1
-    move_robot(robot, ROBOT_POSITIONS["Facing_CH_P1"])
-    print("Moved in front of catridge holder Position 1")
-    time.sleep(0.1)
+    print("Moved just in front of cartidge holder Position 1", "\n")
+    
     move_robot(robot, ROBOT_POSITIONS["CH_P1"])
-    print("Grabbed cartridge holder from Position 1")
+    print("Grabbed cartridge from Position 1", "\n")
     operate_gripper(gripper, 100)
-    time.sleep(1)
-    move_robot(robot, ROBOT_POSITIONS["in_front_of_white_bg"])
-    print("Moved to white background")
+    
+    move_robot(robot, ROBOT_POSITIONS["Before_CH_P1"])
+    print("Moved just in front of cartidge holder Position 1", "\n")
+    
+    move_robot(robot, ROBOT_POSITIONS["Before_MTQ_Cartidge"])
+    print("Moved in front of Mettler Toledo Cartridge loading area", "\n")
+    
+    move_robot(robot, ROBOT_POSITIONS["MTQ_Cartridge"])
+    operate_gripper(gripper, 0)
+    print("Loaded Mettler Toledo cartridge", "\n")
+    
+    move_robot(robot, ROBOT_POSITIONS["Before_MTQ_Cartidge"])
+    print("Moved back in front of Mettler Toledo Cartridge loading area", "\n")
+    
+    time.sleep(5)
+    
+    print("Dispensing copper (II) chloride into sample vial", "\n")
+    time.sleep(5)
+    
+    move_robot(robot, ROBOT_POSITIONS["MTQ_Cartridge"])
+    operate_gripper(gripper, 100)
+    print("Grabbed Mettler Toledo cartridge", "\n")
+    
+    move_robot(robot, ROBOT_POSITIONS["Before_MTQ_Cartidge"])
+    print("Unloaded and moved back in front of Mettler Toledo Cartridge loading area", "\n")
+    
+    move_robot(robot, ROBOT_POSITIONS["CH_P1"])
+    operate_gripper(gripper, 0)
+    print("Returned cartridge to Position 1", "\n")
+    
 
     # === Image Capture Setup ===
     cam = cv2.VideoCapture(0)
