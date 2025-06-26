@@ -80,6 +80,14 @@ def main():
     operate_gripper(gripper, 0)
     move_robot(robot, ROBOT_POSITIONS["Home_Position"])
     print("Starting in home position", "\n")
+    move_robot(robot, ROBOT_POSITIONS["Home_Position"])
+    operate_gripper(gripper, 155)
+    move_robot(robot, ROBOT_POSITIONS["Home_Position"])
+    operate_gripper(gripper, 100)
+    move_robot(robot, ROBOT_POSITIONS["Home_Position"])
+    operate_gripper(gripper, 255)
+    move_robot(robot, ROBOT_POSITIONS["Home_Position"])
+    operate_gripper(gripper, 180)
 
     # Loading Mettler Toledo Quantos with Sample Vial 1
     operate_gripper(gripper, 0)
