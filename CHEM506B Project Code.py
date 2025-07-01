@@ -129,14 +129,6 @@ def main():
     move_robot(robot, ROBOT_POSITIONS["Home_Position"])
     print("Starting in home position", "\n")
     
-    # Send commands
-    plate.set_temperature(50)
-    print(f"Temperature: {plate.get_temperature()} °C")
-
-    plate.set_speed(1500)
-    print(f"Speed: {plate.get_speed()} rpm")
-
-    plate.start_stirring()
 
     # Loading Mettler Toledo Quantos with Sample Vial 1
     operate_gripper(gripper, 0)
@@ -272,6 +264,15 @@ def main():
     
     move_robot(robot, ROBOT_POSITIONS["Above_Hotplate"])
     print("Moved to above hotplate stirrer", "\n")
+
+    # Send commands
+
+    plate.set_speed(1000)
+    print(f"Speed: {plate.get_speed()} rpm")
+
+    plate.start_stirring()
+    
+    print("Dissolving copper (II) chloride in water on hotplate")
     
     
     # Loading Mettler Toledo Quantos with Sample Vial 2
@@ -385,6 +386,11 @@ def main():
 
 
     # Moving Sample Vial 1 from hotplate stirrer to Sample Vial Holder 2
+    
+    # Send commands
+
+    plate.stop_stirring()
+
     move_robot(robot, ROBOT_POSITIONS["Above_Hotplate"])
     print("Moved to above hotplate stirrer", "\n")
     
@@ -429,6 +435,10 @@ def main():
     
     move_robot(robot, ROBOT_POSITIONS["Above_Hotplate"])
     print("Moved to above hotplate stirrer", "\n")
+    
+    # Send commands
+
+    plate.start_stirring()
     
     # Liquid dispensing
     
