@@ -492,6 +492,9 @@ def main():
     move_robot(robot, ROBOT_POSITIONS["Home_Position"])
     print("Starting in home position", "\n")
 
+    time.sleep(7200)
+    plate.stop_stirring()
+
     # === Image Capture Setup ===
     cam = cv2.VideoCapture(0)
     cv2.namedWindow("test")
