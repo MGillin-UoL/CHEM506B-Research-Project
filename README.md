@@ -19,7 +19,8 @@ The following pieces of equipment are also required:
 - UR5e robotic arm
 - Robotiq Hand-E adaptive gripper
 - HD Web camera (Logitech C920 HD Pro Webcam)
-- Hotplate stirrer (Heidolph Instruments Hei-PLATE Mix 'n' Heat Core+)
+- IKA RCT basic/digital hotplate stirrer
+- IKA ETS-D5 electronic contact thermometer
 - Sample vial(s)
 - 20 mm magnetic stirrer bar(s)
 - White/black background
