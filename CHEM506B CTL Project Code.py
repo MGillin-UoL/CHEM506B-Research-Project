@@ -66,16 +66,38 @@ CSV_FILE_PATH = os.path.expanduser("~/Code/chem504-2425_GroupA/examples/blue_pix
 # === IKA RCT Digial Hotplate Configuration
 
 import serial.tools.list_ports
+import sys
 from PyLabware.devices.ika_rct_digital import RCTDigitalHotplate
 
-# Detects serial port
+# Detects serial port on Windows or Linux
 def find_hotplate_port():
-    """Return the first likely IKA port e.g. /dev/ttyACM0."""
+    """Returns the first likely IKA port on Windows (e.g. COM8)"""
     ports = serial.tools.list_ports.comports()
     for port in ports:
-        if port.device.startswith('/dev/ttyACM') or port.device.startswith('/dev/ttyUSB'):
-            print(f"Found device on {port.device}")
-            return port.device
+        # Windows ports: COMx
+        if sys.platform.startswith('win'):
+            if port.device.startswith('COM'):
+                # Optional: match known vendor/product IDs or description keywords
+                if 'IKA' in port.description or 'USB' in port.description:
+                    print(f"Found IKA device on {port.device} ({port.description})")
+                    return port.device
+                # If unsure, just take the first COM port (not ideal if multiple)
+                print(f"Found possible device on {port.device} ({port.description})")
+                return port.device
+        
+        # Linux ports: /dev/ttyUSBx or /dev/ttyACMx
+        elif sys.platform.startswith('linux'):
+            if port.device.startswith('/dev/ttyUSB') or port.device.startswith('/dev/ttyACM'):
+                print(f"Found IKA device on {port.device} ({port.description})")
+                return port.device
+            
+        # macOS
+        elif sys.platform.startswith('darwin'):
+            if port.device.startswith('/dev/tty.') or port.device.startswith('/dev/cu.'):
+                if 'USB' in port.description or 'IKA' in port.description:
+                    print(f"Found IKA device on {port.device} ({port.description})")
+                    return port.device
+                
     raise IOError("No IKA hotplate serial port found! Please check connection.")
 
 serial_port = find_hotplate_port()
