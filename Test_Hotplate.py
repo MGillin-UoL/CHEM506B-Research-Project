@@ -56,14 +56,6 @@ plate.initialize_device()
 
 # Send commands (comment/uncomment as necessary)
 
-# plate.start_stirring()
-
-# plate.stop_stirring()
-
-# plate.start_temperature_regulation()
-
-# plate.stop_temperature_regulation()
-
 # plate.set_temperature(100)
 # print(f"Set Temperature: {plate.get_temperature_setpoint()} °C")
 # print(f"Temperature: {plate.get_temperature()} °C")
@@ -71,3 +63,11 @@ plate.initialize_device()
 # plate.set_speed(1000)
 # print(f"Set Speed: {plate.get_speed_setpoint()} rpm")
 # print(f"Speed: {plate.get_speed()} rpm")
+
+# plate.start_stirring()
+
+# plate.stop_stirring()
+
+# plate.start_temperature_regulation()
+
+# plate.stop_temperature_regulation()
