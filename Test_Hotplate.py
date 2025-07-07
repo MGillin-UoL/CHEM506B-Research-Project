@@ -1,14 +1,38 @@
 import serial.tools.list_ports
+import sys
+import glob
+import serial
 from PyLabware.devices.ika_rct_digital import RCTDigitalHotplate
 
-# Detects serial port
+# Detects serial port on Windows
 def find_hotplate_port():
-    """Return the first likely IKA port e.g. /dev/ttyACM0."""
+    """Returns the first likely IKA port on Windows (e.g. COM8)"""
     ports = serial.tools.list_ports.comports()
     for port in ports:
-        if port.device.startswith('/dev/ttyACM') or port.device.startswith('/dev/ttyUSB'):
-            print(f"Found device on {port.device}")
-            return port.device
+        # Windows ports: COMx
+        if sys.platform.startswith('win'):
+            if port.device.startswith('COM'):
+                # Optional: match known vendor/product IDs or description keywords
+                if 'IKA' in port.description or 'USB' in port.description:
+                    print(f"Found IKA device on {port.device} ({port.description})")
+                    return port.device
+                # If unsure, just take the first COM port (not ideal if multiple)
+                print(f"Found possible device on {port.device} ({port.description})")
+                return port.device
+        
+        # Linux ports: /dev/ttyUSBx or /dev/ttyACMx
+        elif sys.platform.startswith('linux'):
+            if port.device.startswith('/dev/ttyUSB') or port.device.startswith('/dev/ttyASM'):
+                print(f"Found IKA device on {port.device} ({port.description})")
+                return port.device
+            
+        # macOS
+        elif sys.platform.startswith('darwin'):
+            if port.device.startswith('/dev/tty.') or port.device.startswith('/dev/cu.'):
+                if 'USB' in port.description or 'IKA' in port.description:
+                    print(f"Found IKA device on {port.device} ({port.description})")
+                    return port.device
+                
     raise IOError("No IKA hotplate serial port found! Please check connection.")
 
 serial_port = find_hotplate_port()
@@ -32,11 +56,20 @@ plate.connect()
 # Initialise/reset it
 plate.initialize_device()
 
-# Send commands
-plate.set_temperature(50)
-print(f"Temperature: {plate.get_temperature()} °C")
+# Send commands (comment/uncomment as necessary)
 
-plate.set_speed(1500)
-print(f"Speed: {plate.get_speed()} rpm")
+# plate.start_stirring()
 
-plate.stop_stirring()
+# plate.stop_stirring()
+
+# plate.start_temperature_regulation()
+
+# plate.stop_temperature_regulation()
+
+# plate.set_temperature(100)
+# print(f"Set Temperature: {plate.get_temperature_setpoint()} °C")
+# print(f"Temperature: {plate.get_temperature()} °C")
+
+# plate.set_speed(1000)
+# print(f"Set Speed: {plate.get_speed_setpoint()} rpm")
+# print(f"Speed: {plate.get_speed()} rpm")
