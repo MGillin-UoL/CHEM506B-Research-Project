@@ -1,10 +1,8 @@
 import serial.tools.list_ports
 import sys
-import glob
-import serial
 from PyLabware.devices.ika_rct_digital import RCTDigitalHotplate
 
-# Detects serial port on Windows
+# Detects serial port on Windows or Linux
 def find_hotplate_port():
     """Returns the first likely IKA port on Windows (e.g. COM8)"""
     ports = serial.tools.list_ports.comports()
@@ -22,7 +20,7 @@ def find_hotplate_port():
         
         # Linux ports: /dev/ttyUSBx or /dev/ttyACMx
         elif sys.platform.startswith('linux'):
-            if port.device.startswith('/dev/ttyUSB') or port.device.startswith('/dev/ttyASM'):
+            if port.device.startswith('/dev/ttyUSB') or port.device.startswith('/dev/ttyACM'):
                 print(f"Found IKA device on {port.device} ({port.description})")
                 return port.device
             
