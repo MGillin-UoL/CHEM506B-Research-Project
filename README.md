@@ -28,7 +28,7 @@ The following pieces of equipment are also required:
 
 ## Usage
 
-Below is a set of instructions for collecting data using the hardware listed before and the code provided.
+There will soon be a set of instructions for collecting data using the hardware listed before and the code provided.
 
 
 ## Authors
