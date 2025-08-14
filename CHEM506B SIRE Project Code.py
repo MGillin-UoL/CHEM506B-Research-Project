@@ -93,14 +93,19 @@ ROBOT_POSITIONS = {
     "Just_Above_SVH3_P1": [0.5987414717674255, -1.1386118990233918, 2.04608661333193, -0.9144613903811951, -5.670835498963491, 3.128770112991333],
     "Above_SVH3_P1": [0.5987197756767273, -1.329923854475357, 1.9546454588519495, -0.6314733189395447, -5.671102348958151, 3.1285338401794434],
 
-    "Dilute_Sample_In_Box_Holder": [0.21587558090686798, -0.616821364765503, 1.0817206541644495, -0.5015390676311036, -4.505638424550192, 3.1420085430145264],
-    "Dilute_Sample_Above_Box_Holder": [0.2158874124288559, -0.6455826920321961, 1.06757098833193, -0.4585659068873902, -4.505611006413595, 3.1420276165008545],
+    "Dilute_Sample_In_Box_Holder": [0.2244097888469696, -0.6542285245708008, 1.1413634459124964, -0.5238320392421265, -4.497173253689901, 3.1417722702026367],
+    "Dilute_Sample_Above_Box_Holder": [0.2243943214416504, -0.6777724784663697, 1.1300938765155237, -0.4889703553966065, -4.497149531041281, 3.1417806148529053],
     "Dilute_Sample_Before_Box": [0.3238547146320343, -1.1832003456405182, 1.9276488463031214, -0.7960153383067627, -4.4144150654422205, 3.1422996520996094],
 
+    "Near_Pipette_Holder_P2": [2.1543357372283936, -1.685329099694723, 2.0619681517230433, -0.3881797355464478, -4.806321326886312, 3.0961053371429443],
     "Pipette_Holder_P2": [2.307023048400879, -0.5393737119487305, 0.8936064879046839, -0.35599930704150395, -5.53933817545046, 3.0959291458129883],
     "Above_Pipette_Holder_P2": [2.3070194721221924, -0.6414576333812256, 0.6142099539386194, 0.025749965304992628, -5.539062563573019, 3.095592975616455],
     "Dilution_Pipette_Above_Hotplate_Sample_Vial": [1.4398818016052246, -1.7634946308531703, 2.190577809010641, -0.430060939197876, -4.824704710637228, 3.0955810546875],
+    "Dilution_Pipette_Just_In_Hotplate_Sample_Vial": [1.4399192333221436, -1.7445036373534144, 2.218029324208395, -0.47649045408282475, -4.824666444455282, 3.0956292152404785],
     "Dilution_Pipette_In_Hotplate_Sample_Vial": [1.4400067329406738, -1.6957513294615687, 2.2733753363238733, -0.5806353849223633, -4.824500624333517, 3.095740795135498],
+    "Dilution_Pipette_Above_SVH3_P1": [1.2315895557403564, -1.0465870064548035, 1.5367682615863245, -0.5023830694011231, -3.6871798674212855, 3.112401008605957],
+    "Dilution_Pipette_Just_In_SVH3_P1": [1.24106764793396, -0.9889148038676758, 1.5025599638568323, -0.52619822443042, -3.677673403416769, 3.1120660305023193],
+    "Dilution_Pipette_In_SVH3_P1": [1.2316241264343262, -1.003032462005951, 1.5729783217059534, -0.5821421903422852, -3.687171522771017, 3.1124773025512695],
     "Dilution_Pipette_Above_Pipette_Bin": [1.9177758693695068, -1.4740468201092263, 1.8912518660174769, -0.4210222524455567, -4.346394364033834, 3.093782424926758],
     "Dilution_Pipette_In_Pipette_Bin": [1.9179952144622803, -1.1700433057597657, 2.1019633452044886, -0.9356538218310853, -4.345923964177267, 3.094118595123291],
 
@@ -116,8 +121,15 @@ MOVEMENT_PARAMS = {
     "blending": 0.02,
 }
 
-#CSV_FILE_PATH = os.path.expanduser("~/Code/chem504-2425_GroupA/examples/blue_pixel_data.csv")
 
+# Choices
+# 1. Full synthesis using Mettler Toledo Quantos
+# 2. Copper chloride and piroctone olamine solutions already prepared
+
+# Choices once syngthesis is ready
+# 1. Synthesise and measure one sample of piroctone olamine
+# 2. Measure particle size distribution over time
+# 3. Measure impact of copper chloride concentration on particle size distribution
 
 
 # # === IKA RCT Digial Hotplate Configuration
@@ -923,101 +935,101 @@ def main():
     # print("Moved to above hotplate stirrer", "\n")
     # time.sleep(1)
     
-    # plate.set_speed(1000)
-    # print(f"Speed: {plate.get_speed()} rpm")
-    # plate.start_stirring()
+    plate.set_speed(1500)
+    print(f"Speed: {plate.get_speed()} rpm")
+    plate.start_stirring()
     
     # print("Dissolving piroctone olamine in ethanol on hotplate")
 
     
-    # # Liquid dispensing
+    # Liquid dispensing
     
-    # move_robot(robot, ROBOT_POSITIONS["Above_Pipette_Holder_P1"])
-    # print("Above Pipette Holder Position 1", "\n")
-    # time.sleep(1)
-    # operate_gripper(gripper, 180)
+    move_robot(robot, ROBOT_POSITIONS["Above_Pipette_Holder_P1"])
+    print("Above Pipette Holder Position 1", "\n")
+    time.sleep(1)
+    operate_gripper(gripper, 180)
     
-    # move_robot(robot, ROBOT_POSITIONS["Pipette_Holder_P1"])
-    # print("Picked up pipette from Pipette Holder Position 1", "\n")
-    # time.sleep(1)
-    # operate_gripper(gripper, 200)
-    # time.sleep(1)
+    move_robot(robot, ROBOT_POSITIONS["Pipette_Holder_P1"])
+    print("Picked up pipette from Pipette Holder Position 1", "\n")
+    time.sleep(1)
+    operate_gripper(gripper, 200)
+    time.sleep(1)
 
-    # move_robot(robot, ROBOT_POSITIONS["Above_Pipette_Holder_P1"])
-    # print("Above Pipette Holder Position 1", "\n")
-    # time.sleep(1)
+    move_robot(robot, ROBOT_POSITIONS["Above_Pipette_Holder_P1"])
+    print("Above Pipette Holder Position 1", "\n")
+    time.sleep(1)
 
-    # for cycle in range(5):  # Repeat the full pipetting routine 1,2,3,4,5 times
-    #     print(f"\n--- Pipetting cycle {cycle + 1}/5 ---")
+    for cycle in range(5):  # Repeat the full pipetting routine 1,2,3,4,5 times
+        print(f"\n--- Pipetting cycle {cycle + 1}/5 ---")
 
-    #     move_robot(robot, ROBOT_POSITIONS["Pipette_Above_SVH2_P1"])
-    #     print("Above Sample Vial Holder 2 Position 1", "\n")
-    #     time.sleep(1)
+        move_robot(robot, ROBOT_POSITIONS["Pipette_Above_SVH2_P1"])
+        print("Above Sample Vial Holder 2 Position 1", "\n")
+        time.sleep(1)
 
-    #     move_robot(robot, ROBOT_POSITIONS["Pipette_Just_In_SVH2_P1"])
-    #     print("Just inside Sample Vial Holder 2 Position 1", "\n")
-    #     time.sleep(1)
-    #     operate_gripper(gripper, 240)
-    #     time.sleep(1)
+        move_robot(robot, ROBOT_POSITIONS["Pipette_Just_In_SVH2_P1"])
+        print("Just inside Sample Vial Holder 2 Position 1", "\n")
+        time.sleep(1)
+        operate_gripper(gripper, 240)
+        time.sleep(1)
         
-    #     for position in range(235, 199, -5):  # Loop from 235 to 200 inclusive
-    #         move_robot(robot, ROBOT_POSITIONS["Pipette_In_SVH2_P1"])
-    #         print("Sucking up copper chloride solution", "\n")
-    #         operate_gripper(gripper, position)
-    #         time.sleep(1)
-        
-        
-    #     move_robot(robot, ROBOT_POSITIONS["Pipette_Above_SVH2_P1"])
-    #     print("Above Sample Vial Holder 2 Position 1", "\n")
-    #     time.sleep(1)
-
-    #     move_robot(robot, ROBOT_POSITIONS["Pipette_Near_Hotplate_Vial"])
-    #     print("Pipette on its way to the hotplate sample vial")
-    #     time.sleep(1)
-
-    #     move_robot(robot, ROBOT_POSITIONS["Pipette_Above_Hotplate_Vial"])
-    #     print("Above sample vial on the hotplate", "\n")
-    #     time.sleep(1)
-        
-    #     move_robot(robot, ROBOT_POSITIONS["Pipette_In_Hotplate_Vial"])
-    #     print("In sample vial on the hotplate", "\n")
-    #     time.sleep(1)
-        
-    #     for position in range(201, 241, 1):  # Loop from 201 to 240 inclusive
-    #         move_robot(robot, ROBOT_POSITIONS["Pipette_In_Hotplate_Vial"])
-    #         print("Dispensing copper chloride solution into piroctone olamine solution", "\n")
-    #         operate_gripper(gripper, position)
-    #         time.sleep(1)
+        for position in range(235, 199, -5):  # Loop from 235 to 200 inclusive
+            move_robot(robot, ROBOT_POSITIONS["Pipette_In_SVH2_P1"])
+            print("Sucking up copper chloride solution", "\n")
+            operate_gripper(gripper, position)
+            time.sleep(1)
         
         
-    #     for position in range(240, 199, -5):  # Loop from 240 to 200 inclusive
-    #         move_robot(robot, ROBOT_POSITIONS["Pipette_Above_Hotplate_Vial"])
-    #         print("Unsqueezing pipette", "\n")
-    #         operate_gripper(gripper, position)
-    #         time.sleep(1)
+        move_robot(robot, ROBOT_POSITIONS["Pipette_Above_SVH2_P1"])
+        print("Above Sample Vial Holder 2 Position 1", "\n")
+        time.sleep(1)
+
+        move_robot(robot, ROBOT_POSITIONS["Pipette_Near_Hotplate_Vial"])
+        print("Pipette on its way to the hotplate sample vial")
+        time.sleep(1)
+
+        move_robot(robot, ROBOT_POSITIONS["Pipette_Above_Hotplate_Vial"])
+        print("Above sample vial on the hotplate", "\n")
+        time.sleep(1)
+        
+        move_robot(robot, ROBOT_POSITIONS["Pipette_In_Hotplate_Vial"])
+        print("In sample vial on the hotplate", "\n")
+        time.sleep(1)
+        
+        for position in range(201, 241, 1):  # Loop from 201 to 240 inclusive
+            move_robot(robot, ROBOT_POSITIONS["Pipette_In_Hotplate_Vial"])
+            print("Dispensing copper chloride solution into piroctone olamine solution", "\n")
+            operate_gripper(gripper, position)
+            time.sleep(3)
+        
+        
+        for position in range(240, 199, -5):  # Loop from 240 to 200 inclusive
+            move_robot(robot, ROBOT_POSITIONS["Pipette_Above_Hotplate_Vial"])
+            print("Unsqueezing pipette", "\n")
+            operate_gripper(gripper, position)
+            time.sleep(1)
     
-    #     move_robot(robot, ROBOT_POSITIONS["Pipette_Near_Hotplate_Vial"])
-    #     print("Pipette on its way to the sample vial")
-    #     time.sleep(1)
+        move_robot(robot, ROBOT_POSITIONS["Pipette_Near_Hotplate_Vial"])
+        print("Pipette on its way to the sample vial")
+        time.sleep(1)
     
 
     
-    # move_robot(robot, ROBOT_POSITIONS["Pipette_Above_Pipette_Bin"])
-    # print("Say goodbye to this pipette!", "\n")
-    # time.sleep(1)
+    move_robot(robot, ROBOT_POSITIONS["Pipette_Above_Pipette_Bin"])
+    print("Say goodbye to this pipette!", "\n")
+    time.sleep(1)
     
-    # move_robot(robot, ROBOT_POSITIONS["Pipette_In_Pipette_Bin"])
-    # print("Yeet!", "\n")
-    # operate_gripper(gripper, 0)
-    # time.sleep(1)
+    move_robot(robot, ROBOT_POSITIONS["Pipette_In_Pipette_Bin"])
+    print("Yeet!", "\n")
+    operate_gripper(gripper, 0)
+    time.sleep(1)
     
-    # move_robot(robot, ROBOT_POSITIONS["Pipette_Above_Pipette_Bin"])
-    # print("Moved above pipette bin", "\n")
-    # time.sleep(1)
+    move_robot(robot, ROBOT_POSITIONS["Pipette_Above_Pipette_Bin"])
+    print("Moved above pipette bin", "\n")
+    time.sleep(1)
 
-    # move_robot(robot, ROBOT_POSITIONS["Front_Home_Position"])
-    # print("Starting in home position", "\n")
-    # time.sleep(1)
+    move_robot(robot, ROBOT_POSITIONS["Front_Home_Position"])
+    print("Starting in home position", "\n")
+    time.sleep(1)
 
     # time.sleep(7200)
     # plate.stop_stirring()
@@ -1036,107 +1048,264 @@ def main():
     # move_robot(robot, ROBOT_POSITIONS["Bend_9"])
     # move_robot(robot, ROBOT_POSITIONS["Bend_10"])
     # move_robot(robot, ROBOT_POSITIONS["Bend_11"])
-    operate_gripper(gripper, 0)
-    move_robot(robot, ROBOT_POSITIONS["Facing_Closed_Box"])
-    time.sleep(1)
-
-    # Opening and box
-
-    operate_gripper(gripper, 0)
-    move_robot(robot, ROBOT_POSITIONS["Box_Fully_Closed"])
-    time.sleep(1)
-    operate_gripper(gripper, 255)
-    print("Box is fully closed", "\n")
-    time.sleep(1)
-
-    move_robot(robot, ROBOT_POSITIONS["Box_1/4_Open"])
-    print("Box is 1/4 open", "\n")
-    time.sleep(1)
-
-    move_robot(robot, ROBOT_POSITIONS["Box_1/2_Open"])
-    print("Box is 1/2 open", "\n")
-    time.sleep(1)
-
-    move_robot(robot, ROBOT_POSITIONS["Box_3/4_Open"])
-    print("Box is 3/4 open", "\n")
-    time.sleep(1)
-
-    move_robot(robot, ROBOT_POSITIONS["Box_Fully_Open"])
-    print("Box is fully open", "\n")
-    time.sleep(1)
-    operate_gripper(gripper, 0)
-    time.sleep(1)
-
-    move_robot(robot, ROBOT_POSITIONS["Facing_Open_Box"])
-    time.sleep(1)
-
-    operate_gripper(gripper, 0)
-    move_robot(robot, ROBOT_POSITIONS["Facing_Closed_Box"])
-    time.sleep(1)
+    # operate_gripper(gripper, 0)
+    # move_robot(robot, ROBOT_POSITIONS["Facing_Closed_Box"])
+    # time.sleep(1)
 
 
-    # Putting sample vial in box
+    # # Diluting sample
+    
+    # move_robot(robot, ROBOT_POSITIONS["Near_Pipette_Holder_P2"])
+    # print("Near Pipette Holder Position 2", "\n")
+    # time.sleep(1)
 
-    move_robot(robot, ROBOT_POSITIONS["Above_SVH3_P1"])
-    time.sleep(1)
-    move_robot(robot, ROBOT_POSITIONS["Just_Above_SVH3_P1"])
-    time.sleep(1)
-    move_robot(robot, ROBOT_POSITIONS["SVH3_P1"])
-    time.sleep(1)
-    operate_gripper(gripper, 125)
-    time.sleep(1)
-    move_robot(robot, ROBOT_POSITIONS["Just_Above_SVH3_P1"])
-    time.sleep(1)
-    move_robot(robot, ROBOT_POSITIONS["Above_SVH3_P1"])
-    time.sleep(1)
-    move_robot(robot, ROBOT_POSITIONS["Facing_Closed_Box"])
-    time.sleep(1)
-    move_robot(robot, ROBOT_POSITIONS["Dilute_Sample_Before_Box"])
-    time.sleep(1)
-    move_robot(robot, ROBOT_POSITIONS["Dilute_Sample_Above_Box_Holder"])
-    time.sleep(1)
-    move_robot(robot, ROBOT_POSITIONS["Dilute_Sample_In_Box_Holder"])
-    time.sleep(1)
-    operate_gripper(gripper, 0)
-    time.sleep(1)
-    move_robot(robot, ROBOT_POSITIONS["Dilute_Sample_Above_Box_Holder"])
-    time.sleep(1)
-    move_robot(robot, ROBOT_POSITIONS["Dilute_Sample_Before_Box"])
-    time.sleep(1)
-    move_robot(robot, ROBOT_POSITIONS["Facing_Closed_Box"])
-    time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Above_Pipette_Holder_P2"])
+    # print("Above Pipette Holder Position 2", "\n")
+    # time.sleep(1)
 
-    # Closing box
+    # operate_gripper(gripper, 180)
+    # move_robot(robot, ROBOT_POSITIONS["Pipette_Holder_P2"])
+    # print("Picked up pipette from Pipette Holder Position 2", "\n")
+    # time.sleep(1)
 
-    move_robot(robot, ROBOT_POSITIONS["Facing_Open_Box"])
-    time.sleep(1)
+    # operate_gripper(gripper, 200)
+    # time.sleep(1)
 
-    move_robot(robot, ROBOT_POSITIONS["Box_Fully_Open"])
-    print("Box is fully open", "\n")
-    time.sleep(1)
-    operate_gripper(gripper, 255)
-    time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Above_Pipette_Holder_P2"])
+    # print("Above Pipette Holder Position 2", "\n")
+    # time.sleep(1)
 
-    move_robot(robot, ROBOT_POSITIONS["Box_3/4_Open"])
-    print("Box is 3/4 open", "\n")
-    time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Near_Pipette_Holder_P2"])
+    # print("Near Pipette Holder Position 2", "\n")
+    # time.sleep(1)
 
-    move_robot(robot, ROBOT_POSITIONS["Box_1/2_Open"])
-    print("Box is 1/2 open", "\n")
-    time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Dilution_Pipette_Above_Hotplate_Sample_Vial"])
+    # print("Above sample vial on the hotplate", "\n")
+    # time.sleep(1)
 
-    move_robot(robot, ROBOT_POSITIONS["Box_1/4_Open"])
-    print("Box is 1/4 open", "\n")
-    time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Dilution_Pipette_Just_In_Hotplate_Sample_Vial"])
+    # print("Just in sample vial on the hotplate", "\n")
+    # time.sleep(1)
+    # operate_gripper(gripper, 220)
+    # time.sleep(1)
 
-    move_robot(robot, ROBOT_POSITIONS["Box_Fully_Closed"])
-    print("Box is fully closed", "\n")
-    time.sleep(1)
-    operate_gripper(gripper, 0)
-    time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Dilution_Pipette_In_Hotplate_Sample_Vial"])
+    # time.sleep(1)
+    # operate_gripper(gripper, 219)
+    # print("Sucking up copper-piroctone solution", "\n")
+    # time.sleep(1)
+    
+    # move_robot(robot, ROBOT_POSITIONS["Dilution_Pipette_Above_Hotplate_Sample_Vial"])
+    # print("Above sample vial on the hotplate", "\n")
+    # time.sleep(1)
 
-    move_robot(robot, ROBOT_POSITIONS["Facing_Closed_Box"])
-    time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Dilution_Pipette_Above_SVH3_P1"])
+    # print("Above Sample Vial Holder 3 Position 1", "\n")
+    # time.sleep(1)
+
+    # move_robot(robot, ROBOT_POSITIONS["Dilution_Pipette_Just_In_SVH3_P1"])
+    # print("In Sample Vial Holder 3 Position 1", "\n")
+    # time.sleep(1)
+
+    # move_robot(robot, ROBOT_POSITIONS["Dilution_Pipette_In_SVH3_P1"])
+    # print("In Sample Vial Holder 3 Position 1", "\n")
+    # time.sleep(1)
+    # operate_gripper(gripper, 220)
+    # print("Dispensing copper piroctone solution in ethanol-water dispersant", "\n")
+
+    # for position in range(220, 199, -5):  # Loop from 220 to 200 inclusive
+    #     move_robot(robot, ROBOT_POSITIONS["Dilution_Pipette_Above_SVH3_P1"])
+    #     print("Unsqueezing pipette", "\n")
+    #     operate_gripper(gripper, position)
+    #     time.sleep(1)
+
+    # move_robot(robot, ROBOT_POSITIONS["Dilution_Pipette_Above_SVH3_P1"])
+    # print("Above Sample Vial Holder 3 Position 1", "\n")
+    # time.sleep(1)
+
+    # move_robot(robot, ROBOT_POSITIONS["Dilution_Pipette_Above_Pipette_Bin"])
+    # print("Dilution pipette is above pipette bin", "\n")
+    # time.sleep(1)
+
+    # move_robot(robot, ROBOT_POSITIONS["Dilution_Pipette_In_Pipette_Bin"])
+    # print("Dilution pipette is in pipette bin", "\n")
+    # operate_gripper(gripper, 0)
+    # time.sleep(1)
+    
+    # move_robot(robot, ROBOT_POSITIONS["Dilution_Pipette_Above_Pipette_Bin"])
+    # print("Moved above pipette bin", "\n")
+    # time.sleep(1)
+
+
+    # # Opening box for laser diffraction
+
+    # operate_gripper(gripper, 0)
+    # move_robot(robot, ROBOT_POSITIONS["Facing_Closed_Box"])
+    # time.sleep(1)
+
+    # move_robot(robot, ROBOT_POSITIONS["Box_Fully_Closed"])
+    # time.sleep(1)
+    # operate_gripper(gripper, 255)
+    # print("Box is fully closed", "\n")
+    # time.sleep(1)
+
+    # move_robot(robot, ROBOT_POSITIONS["Box_1/4_Open"])
+    # print("Box is 1/4 open", "\n")
+    # time.sleep(1)
+
+    # move_robot(robot, ROBOT_POSITIONS["Box_1/2_Open"])
+    # print("Box is 1/2 open", "\n")
+    # time.sleep(1)
+
+    # move_robot(robot, ROBOT_POSITIONS["Box_3/4_Open"])
+    # print("Box is 3/4 open", "\n")
+    # time.sleep(1)
+
+    # move_robot(robot, ROBOT_POSITIONS["Box_Fully_Open"])
+    # print("Box is fully open", "\n")
+    # time.sleep(1)
+    # operate_gripper(gripper, 0)
+    # time.sleep(1)
+
+    # move_robot(robot, ROBOT_POSITIONS["Facing_Open_Box"])
+    # time.sleep(1)
+
+    # operate_gripper(gripper, 0)
+    # move_robot(robot, ROBOT_POSITIONS["Facing_Closed_Box"])
+    # time.sleep(1)
+
+
+    # # Putting sample vial in box
+
+    # move_robot(robot, ROBOT_POSITIONS["Above_SVH3_P1"])
+    # time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Just_Above_SVH3_P1"])
+    # time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["SVH3_P1"])
+    # time.sleep(1)
+    # operate_gripper(gripper, 125)
+    # time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Just_Above_SVH3_P1"])
+    # time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Above_SVH3_P1"])
+    # time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Facing_Closed_Box"])
+    # time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Dilute_Sample_Before_Box"])
+    # time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Dilute_Sample_Above_Box_Holder"])
+    # time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Dilute_Sample_In_Box_Holder"])
+    # time.sleep(1)
+    # operate_gripper(gripper, 0)
+    # time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Dilute_Sample_Above_Box_Holder"])
+    # time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Dilute_Sample_Before_Box"])
+    # time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Facing_Closed_Box"])
+    # time.sleep(1)
+
+    # # Closing box for laser diffraction
+
+    # move_robot(robot, ROBOT_POSITIONS["Facing_Open_Box"])
+    # time.sleep(1)
+
+    # move_robot(robot, ROBOT_POSITIONS["Box_Fully_Open"])
+    # print("Box is fully open", "\n")
+    # time.sleep(1)
+    # operate_gripper(gripper, 255)
+    # time.sleep(1)
+
+    # move_robot(robot, ROBOT_POSITIONS["Box_3/4_Open"])
+    # print("Box is 3/4 open", "\n")
+    # time.sleep(1)
+
+    # move_robot(robot, ROBOT_POSITIONS["Box_1/2_Open"])
+    # print("Box is 1/2 open", "\n")
+    # time.sleep(1)
+
+    # move_robot(robot, ROBOT_POSITIONS["Box_1/4_Open"])
+    # print("Box is 1/4 open", "\n")
+    # time.sleep(1)
+
+    # move_robot(robot, ROBOT_POSITIONS["Box_Fully_Closed"])
+    # print("Box is fully closed", "\n")
+    # time.sleep(1)
+    # operate_gripper(gripper, 0)
+    # time.sleep(1)
+
+    # move_robot(robot, ROBOT_POSITIONS["Facing_Closed_Box"])
+    # time.sleep(1)
+
+
+    # # Integrate Emmanuel's code here
+
+
+    # # Opening box after laser diffraction
+
+    # operate_gripper(gripper, 0)
+    # move_robot(robot, ROBOT_POSITIONS["Facing_Closed_Box"])
+    # time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Box_Fully_Closed"])
+    # time.sleep(1)
+    # operate_gripper(gripper, 255)
+    # print("Box is fully closed", "\n")
+    # time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Box_1/4_Open"])
+    # print("Box is 1/4 open", "\n")
+    # time.sleep(1)
+
+    # move_robot(robot, ROBOT_POSITIONS["Box_1/2_Open"])
+    # print("Box is 1/2 open", "\n")
+    # time.sleep(1)
+
+    # move_robot(robot, ROBOT_POSITIONS["Box_3/4_Open"])
+    # print("Box is 3/4 open", "\n")
+    # time.sleep(1)
+
+    # move_robot(robot, ROBOT_POSITIONS["Box_Fully_Open"])
+    # print("Box is fully open", "\n")
+    # time.sleep(1)
+    # operate_gripper(gripper, 0)
+    # time.sleep(1)
+
+    # move_robot(robot, ROBOT_POSITIONS["Facing_Open_Box"])
+    # time.sleep(1)
+
+
+    # # Removing sample vial from laser diffraction box
+    
+    # move_robot(robot, ROBOT_POSITIONS["Facing_Closed_Box"])
+    # time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Dilute_Sample_Before_Box"])
+    # time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Dilute_Sample_Above_Box_Holder"])
+    # time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Dilute_Sample_In_Box_Holder"])
+    # time.sleep(1)
+    # operate_gripper(gripper, 125)
+    # time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Dilute_Sample_Above_Box_Holder"])
+    # time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Dilute_Sample_Before_Box"])
+    # time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Facing_Closed_Box"])
+    # time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Above_SVH3_P1"])
+    # time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Just_Above_SVH3_P1"])
+    # time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["SVH3_P1"])
+    # time.sleep(1)
+    # operate_gripper(gripper, 0)
+    # time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Just_Above_SVH3_P1"])
+    # time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Above_SVH3_P1"])
+    # time.sleep(1)
+    # move_robot(robot, ROBOT_POSITIONS["Facing_Closed_Box"])
+    # time.sleep(1)
 
 if __name__ == "__main__":
     main()
