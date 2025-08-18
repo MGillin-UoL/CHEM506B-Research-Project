@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 from skimage.measure import regionprops, label
 from cv2_enumerate_cameras import enumerate_cameras
 # from cv2.videoio_registry import getBackendName
-# from cv2_enumerate_cameras import supported_backends
+# from cv2_enumerate_cameras import supported_backendspytho
 
 # Variable declaration
 # For region of interest
@@ -36,17 +36,18 @@ def random_color():
 # Check connected USB cameras and their indexes
 def camera_index():
     # For Windows OS
-    devices = enumerate_cameras(cv2.CAP_MSMF)
+    devices = enumerate_cameras(cv2.CAP_DSHOW)
     # For Linux OS
     # devices = enumerate_cameras(cv2.CAP_GSTREAMER)
     for device in devices:
         print(f'{device.index}: {device.name}')
-    # Search for specific device name, change depending on camera or USB device
-    if device.name == "HP HD Camera":
-        print(f'Found {device.name} on index {device.index}')
-        return device.index
-    else:
-        print('No suitable camera found.')
+        # Search for specific device name, change depending on camera or USB device
+        # if device.name == "Integrated Webcam":
+        if device.name == "HD Pro Webcam C920":
+            print(f'Found {device.name} on index {device.index}')
+            return device.index
+        else:
+            print('No suitable camera found.')
 
 # Find the diffraction center using intensity centroid
 def find_center(gray):
@@ -96,7 +97,7 @@ def plot_radial_intensity(image, center_x, center_y, angle_step=1):
          valid_indices = distances <= min(width, height)
          interpolated_values = interpolated_values[valid_indices]
          distances = distances[valid_indices]
-         print(distances)
+        #  print(distances)
          
          # Calculate the average intensity
          avg_intensity = np.mean(interpolated_values)
@@ -122,7 +123,7 @@ def compute_radial_profile(img):
     # Find center coordinates
     center = find_center(img)
     
-    # plot_radial_intensity(img, center[0], center[1], angle_step=1)
+    plot_radial_intensity(img, center[0], center[1], angle_step=1)
     
     # Create coordinate grid from the center
     y, x = np.indices((h, w))
@@ -160,6 +161,7 @@ def visualise(a, b):
     plt.imshow(cv2.cvtColor(b, cv2.COLOR_BGR2RGB))
     plt.axis()
     plt.tight_layout()
+    plt.show
 
 # Plot update
 def intensity_plots(angles, I, distro):
@@ -168,6 +170,8 @@ def intensity_plots(angles, I, distro):
     ax2.clear()
     
     # Cross-sectional intensity distribution
+    plt.figure(figsize=(12, 6))
+    plt.subplot(1, 2, 1)
     ax1.plot(distro, label='Avg. Intensity')
     ax1.set_title("Cross-sectional Intensity Profile", fontsize=14)
     ax1.set_xlabel("Pixels", fontsize=13)
@@ -178,6 +182,7 @@ def intensity_plots(angles, I, distro):
     ax1.grid()
     
     # Angle-dependent Intensity distribution
+    plt.subplot(1, 2, 1)
     ax2.plot(angles, I, label='Radial Intensity')
     ax2.set_title("Angular Intensity Profile", fontsize=14)
     ax2.set_xlabel("Scattering Angle (degrees)", fontsize=13)
@@ -188,12 +193,13 @@ def intensity_plots(angles, I, distro):
     ax2.legend()
     ax2.grid()
     plt.pause(0.01)
+    plt.show
 
 def cv_diffraction():
     cam_index = camera_index()  # RGB camera index
 
     # Initialize the video capture
-    cap = cv2.VideoCapture(cam_index)
+    cap = cv2.VideoCapture(cam_index, cv2.CAP_DSHOW)
     if not cap.isOpened():
         print("Camera not accessible.")
         cap.release()
@@ -201,20 +207,19 @@ def cv_diffraction():
         exit()
 
     # Initialize the plots
-    plt.ion()   # Turn on interactive mode
+    # plt.ion()   # Turn on interactive mode
 
-    last_update_time = time.time()
+    start_time = time.time()
     
     try:
-        while True:
+        print("Laser difrraction in progress...")
+        while time.time() - start_time < 10:
             ret, frame = cap.read()
             if not ret:
                 break
     
             # Convert to grayscale and apply blur to reduce pixel noise
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-            # kernelsizes = [(3, 3), (9, 9), (15, 15)]
-            # blurred = cv2.GaussianBlur(gray, kernelsizes[0], 0)
             
             # Threshold bright regions
             _, thresh = cv2.threshold(gray, 
@@ -267,39 +272,43 @@ def cv_diffraction():
             gray1 = cv2.cvtColor(canvas, cv2.COLOR_BGR2GRAY)
             
             # get current time
-            current_time = time.time()
+            # current_time = time.time()
             
             # Run analysis every 5 seconds (can be changed)
-            if current_time - last_update_time >= 5:
-    
-                # Step 1: Visualise image preprocessing effects
-                visualise(frame, canvas)
-                
-                # Step 2: Compute angular intensity profile
-                angles, intensity, distribution = compute_radial_profile(gray1)
-    
-                # Step 3: Plot results
-                intensity_plots(angles, intensity, distribution)
-                last_update_time = current_time
-    
+            # if current_time - last_update_time >= 5:
+  
+ 
             # Show webcam feed
             # Stack original and processed frames for side-by-side view
             stacked = np.hstack((frame, canvas))
             cv2.imshow("Laser Diffraction (Left) | Centered Bright Region (Right)", stacked)
-            
+
             if cv2.waitKey(1) & 0xFF == 27:
                 break
+          
     finally:
         # Release resources and close windows
         cap.release()
         cv2.destroyAllWindows()
         # Turn off interactive mode
-        plt.ioff()
-        plt.show()
+        # plt.ioff()
+        # plt.show()
+
+    return gray1, frame, canvas
 
 # Main loop with webcam
 def main():
-    cv_diffraction()
+    gray1, frame, canvas = cv_diffraction()
+
+    # Step 1: Visualise image preprocessing effects
+    visualise(frame, canvas)
+    
+    # Step 2: Compute angular intensity profile
+    angles, intensity, distribution = compute_radial_profile(gray1)
+
+    # Step 3: Plot results
+    intensity_plots(angles, intensity, distribution)
+    # last_update_time = current_time
 
 
 # Main workflow
