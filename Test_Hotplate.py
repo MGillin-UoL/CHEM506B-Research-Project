@@ -1,3 +1,17 @@
+# -*- coding: utf-8 -*-
+"""
+Frugal Automation for Crystallisation Analysis
+Webcam-Based Light Scattering for Particle Characterisation
+
+Author: Michael Gillin (University of Liverpool, Digital Chemistry MSc)
+Supervisors: Dr Joe Forth, Dr Gabriella Pizzuto
+Date: August 2025
+
+Description:
+This script connects an IKA RCT Basic/Digital hotplate stirrer to a computer,
+enabling remote control over stirring, heating, starting, and stopping.
+"""
+
 import serial.tools.list_ports
 import sys
 from PyLabware.devices.ika_rct_digital import RCTDigitalHotplate
