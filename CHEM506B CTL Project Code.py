@@ -1,3 +1,27 @@
+# -*- coding: utf-8 -*-
+"""
+Frugal Automation for Crystallisation Analysis
+Webcam-Based Light Scattering for Particle Characterisation
+
+Author: Michael Gillin (University of Liverpool, Digital Chemistry MSc)
+Supervisors: Dr Joe Forth, Dr Gabriella Pizzuto
+Date: August 2025
+
+Description:
+This script controls a UR5e robotic arm, a Robotiq Hand-E adaptive gripper, and
+an IKA RCT Digital/Basic hotplate stirrer to simulate a dropwise solvent synthesis.
+This was designed using the workspace available in the Central Teaching Laboratories
+at the University of Liverpool.
+
+Notes:
+This script was developed as part of Michael Gillin's Digital Chemistry MSc
+dissertation at the University of Liverpool, "Frugal Automation for Crystallisation
+Analysis: Webcam-Based Light Scattering for Low-Cost Particle Characterisation"
+
+GitHub: https://github.com/MGillin-UoL
+Email: sgmgilli@liverpool.ac.uk
+"""
+
 import os
 import sys
 import time
