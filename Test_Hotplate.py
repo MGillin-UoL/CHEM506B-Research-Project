@@ -10,6 +10,14 @@ Date: August 2025
 Description:
 This script connects an IKA RCT Basic/Digital hotplate stirrer to a computer,
 enabling remote control over stirring, heating, starting, and stopping.
+
+Notes:
+This script was developed as part of Michael Gillin's Digital Chemistry MSc
+dissertation at the University of Liverpool, "Frugal Automation for Crystallisation
+Analysis: Webcam-Based Light Scattering for Low-Cost Particle Characterisation"
+
+GitHub: 
+Email: sgmgilli@liverpool.ac.uk
 """
 
 import serial.tools.list_ports
