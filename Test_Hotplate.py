@@ -16,7 +16,7 @@ This script was developed as part of Michael Gillin's Digital Chemistry MSc
 dissertation at the University of Liverpool, "Frugal Automation for Crystallisation
 Analysis: Webcam-Based Light Scattering for Low-Cost Particle Characterisation"
 
-GitHub: 
+GitHub: https://github.com/MGillin-UoL
 Email: sgmgilli@liverpool.ac.uk
 """
 
