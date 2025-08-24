@@ -7,28 +7,47 @@ This GitHub repository contains the code associated with Michael Gillin's Digita
 
 This project involves developing a robotic workflow to analyse the crystallisation mechansisms and particle size distributions of a copper-piroctone complex using laser light scattering.
 
+This project develops a low-cost, automated system for synthesising a metal-organic complex, analysing crystallisation, and determining particle size distributions. A Logitch HD webcam and Class 1 laser are used to capture scattering patterns, which are then processed with Python to extract radial intensity profiles and recover particle size distributions. The system provides a frugal alternative to commercial instruments like the Malvern Panalytical Mastersizer 3000, with applications in crystallisation, soft matter formulations, and materials characterisation.
+
 ## Prerequisites
 
 The following software is required to run the code and acquire the appropriate data:
 
 - Visual Studio Code (or other code editor) - https://code.visualstudio.com/download
-- Python (Anaconda is recommended. To install, click "Free Download using the URL") - https://www.anaconda.com/
+- Python 3.9+ (Anaconda is recommended. To install, click "Free Download using the URL") - https://www.anaconda.com/
 
-The following pieces of equipment are also required:
+Required Python packages:
+- opencv-python
+- numpy
+- matplotlib
+- scikit-image
+- scipy
+- miepython
+- cv2-enumerate-cameras
+
+Install dependencies with:
+pip install -r requirements.txt
+
+Hardware:
 
 - UR5e robotic arm
 - Robotiq Hand-E adaptive gripper
 - HD Web camera (Logitech C920 HD Pro Webcam)
 - IKA RCT basic/digital hotplate stirrer
-- IKA ETS-D5 electronic contact thermometer
 - Sample vial(s)
 - 20 mm magnetic stirrer bar(s)
 - White/black background
 - Mettler Toledo Quantos
+- Class 1 red laser (635 nm)
 
 ## Usage
 
-There will soon be a set of instructions for collecting data using the hardware listed before and the code provided.
+Clone the repository:
+git clone https://github.com/MGillin-UoL/CHEM506B-Research-Project.git
+cd CHEM506B-Research-Project
+
+Run the scattering analysis:
+python SIRE_Scatter.py
 
 
 ## Authors
