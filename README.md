@@ -57,7 +57,14 @@ If you have any questions or would like additional information, please contact:
 - Michael Gillin (sgmgilli@liverpool.ac.uk)
 
 ## License
-This project is not currently licensed.
+This project is currently under an MIT License. For details, please see LICENSE.
 
 ## Acknowledgements
-The author would like to thank his supervisors, Dr Joe Forth and Gabriella Pizzuto for supervising his project. He would also like to thank Dr Marco Giardello for cosupervising his project. He would also like to thank Emmanuel Ombo, who supported Michael throughout his project. He would also like to thank Jakub Glowacki for supporting him with his robotic workflow development. He would also like to thank all members of the Forth Group, who taught him how to 3D print, introduced him to the university's disposal mechanisms, and saw him day-to-date in the office.
+The author would like to thank the following people:
+- Dr Joe Forth and Dr Gabriella Pizzuto - Supervisors for this project
+- Dr Marco Giardello - Coassessor for this project
+- Emmanuel Ombo - Day-to-day supervisor who provided continuous support throughout the project
+- Jakub Glowacki - Provided support in SIRE and integrating the Mettler Toledo Quantos into the robotic workflow
+- Forth Group - Provided day-to-day support for 3D printing and the University of Liverpool's disposal mechanisms
+- Professor Laurence Hardwick - Provided the lab space within SIRE
+- CTL/MIF Technicians - Ensured the author was trained and safe when using all equipment
