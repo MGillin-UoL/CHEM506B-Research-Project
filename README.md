@@ -5,9 +5,11 @@ This GitHub repository contains the code associated with Michael Gillin's Digita
 
 ### Project Overview
 
-This project involves developing a robotic workflow to analyse the crystallisation mechansisms and particle size distributions of a copper-piroctone complex using laser light scattering.
-
 This project develops a low-cost, automated system for synthesising a metal-organic complex, analysing crystallisation, and determining particle size distributions. A Logitch HD webcam and Class 1 laser are used to capture scattering patterns, which are then processed with Python to extract radial intensity profiles and recover particle size distributions. The system provides a frugal alternative to commercial instruments like the Malvern Panalytical Mastersizer 3000, with applications in crystallisation, soft matter formulations, and materials characterisation.
+
+The specific reaction performed over this research is the synthesis of bis(piroctone)copper(II) from the dropwise addition of aqueous copper(II) chloride to ethanolic piroctone olamine, as shown in the reaction scheme below:
+
+insert here
 
 ## Prerequisites
 
