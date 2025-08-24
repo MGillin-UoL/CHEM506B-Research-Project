@@ -8,8 +8,11 @@ Supervisors: Dr Joe Forth, Dr Gabriella Pizzuto
 Date: August 2025
 
 Description:
-This script connects an IKA RCT Basic/Digital hotplate stirrer to a computer,
-enabling remote control over stirring, heating, starting, and stopping.
+This script controls a UR5e robotic arm, a Robotiq Hand-E adaptive gripper, and
+an IKA RCT Digital/Basic hotplate stirrer to conduct a solvent synthesis, which can
+then be analysed using laser diffraction. This was designed using the workspace
+available in the Stephenson Institute for Renewable Energy at the University of
+Liverpool.
 
 Notes:
 This script was developed as part of Michael Gillin's Digital Chemistry MSc
