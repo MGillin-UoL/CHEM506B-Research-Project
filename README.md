@@ -1,11 +1,11 @@
 # CHEM506B-Research-Project
-This GitHub repository contains the code associated with Michael Gillin's Digital Chemistry: AI, Machine Learning, Robotics, and Automation MSc dissertation project at the University of Liverpool.
+This GitHub repository contains the code associated with Michael Gillin's Digital Chemistry: AI, Machine Learning, Robotics, and Automation MSc dissertation project at the University of Liverpool, titled "Frugal Automation for Crystallisation Analysis: Webcam-Based Light Scattering for Particle Characterisation".
 
 ## Description
 
 ### Project Overview
 
-This project involves developing a robotic workflow to analyse the crystallisation mechansisms and particle size distributions of a copper piroctone complex using laser light scattering.
+This project involves developing a robotic workflow to analyse the crystallisation mechansisms and particle size distributions of a copper-piroctone complex using laser light scattering.
 
 ## Prerequisites
 
