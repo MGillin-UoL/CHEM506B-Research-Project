@@ -9,7 +9,8 @@ This project develops a low-cost, automated system for synthesising a metal-orga
 
 The specific reaction performed over this research is the synthesis of bis(piroctone)copper(II) from the dropwise addition of aqueous copper(II) chloride to ethanolic piroctone olamine, as shown in the reaction scheme below:
 
-insert here
+<img width="1747" height="372" alt="GetImage" src="https://github.com/user-attachments/assets/69a06b24-7854-4cb2-82fe-fe51a903875f" />
+
 
 ## Prerequisites
 
@@ -51,6 +52,9 @@ cd CHEM506B-Research-Project
 Run the scattering analysis:
 python SIRE_Scatter.py
 
+## Video
+
+Please click the following YouTube link to find a video of the full robotic workflow:
 
 ## Authors
 If you have any questions or would like additional information, please contact:
