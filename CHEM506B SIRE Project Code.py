@@ -33,6 +33,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 
+import SIRE_Scatter2
+
 from utils.UR_Functions import URfunctions as URControl
 from robotiq.robotiq_gripper import RobotiqGripper
 from PyLabware.devices.ika_rct_digital import RCTDigitalHotplate
@@ -1285,7 +1287,8 @@ def main():
     # time.sleep(1)
 
 
-    # # Integrate Emmanuel's code here
+    # Run the scatter workflow
+    scatter.run_scatter()
 
 
     # # Opening box after laser diffraction
