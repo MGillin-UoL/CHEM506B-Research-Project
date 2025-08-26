@@ -312,7 +312,7 @@ def main():
 
 def run_scatter():
     """Wrapper function so other scripts can run the whole workflow"""
-    return main()   # just calls your existing main()
+    return main()
 
 if __name__ == "__main__":
     run_scatter()
@@ -321,4 +321,5 @@ if __name__ == "__main__":
 # Main workflow
 if __name__ == "__main__":
     main()
+
 
