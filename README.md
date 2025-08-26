@@ -54,7 +54,7 @@ python SIRE_Scatter.py
 
 ## Video
 
-Please click the following YouTube link to find a video of the full robotic workflow:
+Please click the following YouTube link to find a video of the full robotic workflow: https://youtu.be/qU7R07p6OWQ
 
 ## Authors
 If you have any questions or would like additional information, please contact:
