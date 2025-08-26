@@ -310,7 +310,15 @@ def main():
     intensity_plots(angles, intensity, distribution)
     # last_update_time = current_time
 
+def run_scatter():
+    """Wrapper function so other scripts can run the whole workflow"""
+    return main()   # just calls your existing main()
+
+if __name__ == "__main__":
+    run_scatter()
+
 
 # Main workflow
 if __name__ == "__main__":
     main()
+
